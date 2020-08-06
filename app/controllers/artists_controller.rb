@@ -1,4 +1,6 @@
 class ArtistsController < ApplicationController
+  include ApplicationHelper
+
   def index
     @artists = Artist.all
   end
@@ -8,6 +10,7 @@ class ArtistsController < ApplicationController
   end
 
   def new
+    redirect_if_not_allowed("artists")
     @artist = Artist.new
   end
 
