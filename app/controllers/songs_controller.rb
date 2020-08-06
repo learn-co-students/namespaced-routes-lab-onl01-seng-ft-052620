@@ -1,4 +1,6 @@
 class SongsController < ApplicationController
+  include ApplicationHelper
+
   def index
     if params[:artist_id]
       @artist = Artist.find_by(id: params[:artist_id])
@@ -25,6 +27,7 @@ class SongsController < ApplicationController
   end
 
   def new
+    redirect_if_not_allowed("songs")
     @song = Song.new
   end
 
